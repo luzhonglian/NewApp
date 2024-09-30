@@ -1,0 +1,54 @@
+{
+  //uview配置
+  "easycom": {
+    "autoscan": true,
+    // 注意一定要放在custom里，否则无效，https://ask.dcloud.net.cn/question/131175
+    "custom": {
+      "^u--(.*)": "uview-plus/components/u-$1/u-$1.vue",
+      "^up-(.*)": "uview-plus/components/u-$1/u-$1.vue",
+      "^u-([^-].*)": "uview-plus/components/u-$1/u-$1.vue"
+    }
+  },
+  "pages": [
+    //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+    {
+      "path": "pages/Home/Home",
+      "style": {
+        "navigationBarTitleText": "首页"
+      }
+    },
+    {
+      "path": "pages/User/User",
+      "style": {
+        "navigationBarTitleText": "用户"
+      }
+    }
+  ],
+  "globalStyle": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8",
+    "navigationStyle": "custom"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "black",
+    "backgroundColor": "white",
+    "height": "7.5vh",
+    "list": [
+      {
+        "pagePath": "pages/Home/Home",
+        "iconPath": "static/icons/home.png",
+        "selectedIconPath": "static/icons/home-s.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/User/User",
+        "iconPath": "static/icons/user.png",
+        "selectedIconPath": "static/icons/user-s.png",
+        "text": "用户"
+      }
+    ]
+  }
+}
