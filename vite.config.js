@@ -10,4 +10,14 @@ export default defineConfig({
       dts: true,
     }),
   ],
+  server: {
+    host: "0.0.0.0",
+    proxy: {
+      "/api": {
+        target: "",
+        changeOrigin: true,
+      },
+    },
+    open: false,
+  },
 });
