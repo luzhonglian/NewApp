@@ -3,18 +3,18 @@
 </template>
 
 <script setup>
-import { useEventListener } from '@vueuse/core';
-import * as echarts from 'echarts';
+import { useEventListener } from "@vueuse/core";
+import * as echarts from "echarts";
 let chartInstance;
 const EchartRef = ref();
 const props = defineProps({
   width: {
     type: [String, Number],
-    default: '100%',
+    default: "100%",
   },
   height: {
     type: [String, Number],
-    default: '100%',
+    default: "100%",
   },
 });
 
@@ -26,7 +26,7 @@ const _style = computed(() => {
 });
 nextTick(() => {
   /// 用nextTick确保dom已经渲染完成,可确保能拿到正确的父组件宽高
-  chartInstance = echarts.init(EchartRef.value);
+  chartInstance = echarts.init(EchartRef.value, null, { locale: "ZH" });
 });
 
 //`传入的的高宽改变会resize
@@ -35,7 +35,7 @@ watch([() => props.width, () => props.height], () => {
 });
 
 //`窗口的高宽改变会resize
-useEventListener(window, 'resize', resize);
+useEventListener(window, "resize", resize);
 
 function resize() {
   chartInstance.resize();
@@ -64,15 +64,17 @@ function setOption(option) {
 };
  */
 function legendListener(option, legendData, markLineMap = {}) {
-  chartInstance.off('legendselectchanged');
-  chartInstance.on('legendselectchanged', function (params) {
+  chartInstance.off("legendselectchanged");
+  chartInstance.on("legendselectchanged", function (params) {
     option.yAxis.max = function (value) {
       let max = 0;
       const unitKeys = Object.keys(markLineMap);
-      legendData.forEach(item => {
+      legendData.forEach((item) => {
         if (params.selected[item]) {
-          let vogueKey = unitKeys.find(key => item.includes(key));
-          let maxMarkLineUpperLimit = Math.max(...(markLineMap[vogueKey] || []).map(line => line.yAxis || 0));
+          let vogueKey = unitKeys.find((key) => item.includes(key));
+          let maxMarkLineUpperLimit = Math.max(
+            ...(markLineMap[vogueKey] || []).map((line) => line.yAxis || 0)
+          );
           if (maxMarkLineUpperLimit > max) {
             max = maxMarkLineUpperLimit;
           }
