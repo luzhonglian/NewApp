@@ -2,6 +2,7 @@ import { createSSRApp } from "vue";
 import App from "./App.vue";
 import { createPinia } from "pinia";
 import uviewPlus, { setConfig } from "uview-plus";
+import.meta.glob("./style/*.scss", { eager: true });
 import Echart from "@/components/Echart.vue";
 window.wx = undefined;
 export function createApp() {

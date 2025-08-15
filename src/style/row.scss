@@ -1,0 +1,33 @@
+/// 一行内容的左右展示
+.row {
+  display: flex;
+  justify-content: space-between;
+
+  .left {
+    color: #3b3d3d;
+  }
+  .right {
+    max-width: 55vw;
+    text-align: right;
+    &.limit {
+      width: 55vw;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    uni-image {
+      height: 100%;
+      margin-right: 2vw;
+    }
+    display: flex;
+    align-items: center;
+    color: #444444;
+    &.ellipsis {
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      max-width: 50%;
+    }
+  }
+}
